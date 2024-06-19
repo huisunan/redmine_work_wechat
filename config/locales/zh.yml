@@ -4,6 +4,8 @@ zh:
   label_agentid: 应用 agentId
   label_secret: 应用 secret
   label_proxy: http 代理
+  label_proxy_user: http 代理用户
+  label_proxy_pass: http 代理密码
   label_notification_include_details: 通知内包含详情
   label_open_in_default_browser: 在默认浏览器中打开通知链接
   open_in_default_browser_tips: 需要先在企业微信中把 Redmine 域名配置为可信域名

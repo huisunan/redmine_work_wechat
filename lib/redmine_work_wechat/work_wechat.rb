@@ -17,11 +17,13 @@ module RedmineWorkWechat
 
       unless RedmineWorkWechat.settings_hash['proxy'].nil?
         proxy = RedmineWorkWechat.settings_hash['proxy'].split(':')
+        proxy_user = RedmineWorkWechat.settings_hash['proxy_user']
+        proxy_pass = RedmineWorkWechat.settings_hash['proxy_pass']
         case proxy.length
         when 1
-          http = Net::HTTP.new(uri.host, uri.port, proxy.first, 80)
+          http = Net::HTTP.new(uri.host, uri.port, proxy.first, 80,proxy_user)
         when 2
-          http = Net::HTTP.new(uri.host, uri.port, proxy.first, proxy.last)
+          http = Net::HTTP.new(uri.host, uri.port, proxy.first, proxy.last,proxy_pass)
         else
           # type code here
         end

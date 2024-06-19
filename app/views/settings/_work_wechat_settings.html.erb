@@ -24,6 +24,14 @@
   <label><%= l(:label_proxy) %></label>
   <%= text_field_tag 'settings[proxy]', @settings['proxy'], :size => 50 %>
 </p>
+<p>
+  <label><%= l(:label_proxy_user) %></label>
+  <%= text_field_tag 'settings[proxy_user]', @settings['proxy_user'], :size => 50 %>
+</p>
+<p>
+  <label><%= l(:label_proxy_pass) %></label>
+  <%= text_field_tag 'settings[proxy_pass]', @settings['proxy_pass'], :size => 50 %>
+</p>
 <hr>
 <p>
   <label><%= l(:label_notification_include_details) %></label>

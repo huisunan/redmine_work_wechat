@@ -28,6 +28,14 @@ module RedmineWorkWechat
       settings_hash["proxy"]
     end
 
+    def proxy_user
+      settings_hash["proxy_user"]
+    end
+
+    def proxy_pass
+      settings_hash["proxy_pass"]
+    end
+
     def notification_include_details
       settings_hash["notification_include_details"]
     end
