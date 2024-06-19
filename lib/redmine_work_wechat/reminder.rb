@@ -82,7 +82,20 @@ module RedmineWorkWechat
                  content.map { |s| "> #{s}" }.join("\n") +
                  "\n[#{l(:label_issue_view_all)}](#{open_issues_url})"
 
-      WorkWechat.deliver_markdown_msg([user.mail], content)
+      we_com_ids = []
+
+      user.each do |u|
+        we_com_id = get_user_we_com_id(u)
+        if we_com_id
+          we_com_ids << we_com_id
+        end
+      end
+
+      if we_com_ids.length == 0
+        return
+      end
+
+      WorkWechat.deliver_markdown_msg(we_com_ids, content)
     end
   end
 

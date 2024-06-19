@@ -3,6 +3,10 @@ module RedmineWorkWechat
     include IssuesHelper
     include CustomFieldsHelper
 
+    def get_user_we_com_id(user)
+       we_com_id = user.custom_field_values.detect { |cf| cf.custom_field.name == 'we_com_id' }.value
+    end
+
     def render_markdown(author, issue, journal = nil)
       content = []
       content << ''

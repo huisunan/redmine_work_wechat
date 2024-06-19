@@ -81,6 +81,10 @@ module RedmineWorkWechat
     end
 
     def self.deliver_card_msg(users, title, msg, url = '', btntxt = '查看详情')
+      users = users.compact
+      if users.length == 0
+        return
+      end
       puts "send card message to: #{users.join('|')}"
 
       uri = URI(format(@send_msg_url, get_access_token))
@@ -106,7 +110,12 @@ module RedmineWorkWechat
     end
 
     def self.deliver_markdown_msg(users, msg)
+      users = users.compact
+      if users.length == 0
+        return
+      end
       puts "send markdown message to: #{users.join('|')}"
+
 
       uri = URI(format(@send_msg_url, get_access_token))
       req = Net::HTTP::Post.new(uri.request_uri)
@@ -126,7 +135,8 @@ module RedmineWorkWechat
       errmsg = json['errmsg']
       if errcode != 0
         puts "request body \n #{req.body}"
-      raise "send markdown message failed: #{errcode} - #{errmsg} body" if errcode != 0
+      end
+      raise "send markdown message failed: #{errcode} - #{errmsg}" if errcode != 0
     end
 
   end

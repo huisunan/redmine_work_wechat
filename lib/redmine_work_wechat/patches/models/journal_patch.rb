@@ -14,7 +14,7 @@ module RedmineWorkWechat
           unless RedmineWorkWechat::available?
             return
           end
-          
+
           work_wechat_users = []
           journal = self
           users = journal.notified_users | journal.notified_watchers | journal.notified_mentions | journal.journalized.notified_mentions
@@ -22,13 +22,17 @@ module RedmineWorkWechat
             journal.notes? || journal.visible_details(user).any?
           end
           users.each do |user|
-            work_wechat_users << user.mail
+            work_wechat_users << get_user_we_com_id(user)
           end
 
           if issue.author.pref.no_self_notified
-            addresses = issue.author.mails
-            work_wechat_users -= addresses if work_wechat_users.is_a?(Array)
+            we_com_id = get_user_we_com_id(issue.author)
+            if we_com_id
+              work_wechat_users -= we_com_id if work_wechat_users.is_a?(Array)
+            end
           end
+
+          work_wechat_users = work_wechat_users.compact
 
           if work_wechat_users.length == 0
             return
