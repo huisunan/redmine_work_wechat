@@ -124,7 +124,9 @@ module RedmineWorkWechat
       json = JSON.parse(resp.body)
       errcode = json['errcode']
       errmsg = json['errmsg']
-      raise "send markdown message failed: #{errcode} - #{errmsg}" if errcode != 0
+      if errcode != 0
+        puts "request body \n #{req.body}"
+      raise "send markdown message failed: #{errcode} - #{errmsg} body" if errcode != 0
     end
 
   end
